@@ -9,15 +9,15 @@ from visualization import (
 )
 
 # Streamlit page config
-st.set_page_config(page_title="AirBnB", page_icon="", layout="wide")
+st.set_page_config(page_title="KST DB GEN AI", page_icon="", layout="wide")
 
-st.title("Chat with your Data")
+st.title("Get your data in seconds from Database..")
 
 # Taking open api key as user input
 openai_key_input_placeholder = st.empty()
 if 'is_api_key_set' not in st.session_state:
-  openai_key = openai_key_input_placeholder.text_input("OpenAI API Key",
-                                                       type="password")
+  openai_key = openai_key_input_placeholder.text_input("OpenAI API Key", type="password")
+
   if openai_key:
     # Save the input into session state
     st.session_state.is_api_key_set = True
@@ -36,8 +36,7 @@ if "chat_history" not in st.session_state:
 # Rendering existing messages
 for message in st.session_state.chat_history:
   if 'df_content' in message:
-    st.chat_message(message["role"]).dataframe(message["df_content"],
-                                               hide_index=True)
+    st.chat_message(message["role"]).dataframe(message["df_content"],hide_index=True)
   else:
     st.chat_message(message["role"]).write(message["content"])
 
@@ -76,11 +75,10 @@ if user_question:
   with st.spinner("Looking for a visualization to display the data..."):
     # Get the visualization type & graph parameters passing in the
     # user question & sql query
-    visualization_response = get_suggested_visualization_response_from_ai(
-        sql_query, user_question)
+    visualization_response = get_suggested_visualization_response_from_ai(sql_query, user_question)
 
     # Step 5
-    plot_visualization_for_user_question(visualization_response,
-                                         query_output_df)
+    plot_visualization_for_user_question(visualization_response, query_output_df)
+
 else:
   print("Cannot Find SQL Query for user query :", user_question)

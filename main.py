@@ -11,7 +11,7 @@ from visualization import (
 # Streamlit page config
 st.set_page_config(page_title="KST DB GEN AI", page_icon="", layout="wide")
 
-st.title("Get your data in seconds from Database..")
+st.title("Get your data within no time from your Database..")
 
 # Taking open api key as user input
 openai_key_input_placeholder = st.empty()
